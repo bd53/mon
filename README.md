@@ -2,7 +2,7 @@
 
 Very wip, basically a tech demo.
 
-[test.webm](https://github.com/user-attachments/assets/05915675-e43b-495c-ae64-933190386ff6)
+[test2.webm](https://github.com/user-attachments/assets/98f004ee-a697-453a-a57b-c487bcb731b9)
 
 [![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
 [![](https://img.shields.io/github/contributors/bd53/mon?logo=github)](https://github.com/bd53/mon/graphs/contributors)
@@ -29,6 +29,7 @@ g++ -Wall -Wextra -O2 -std=c++17 -fPIC -o mon Monitor.o main.o -L. -lsysinfo -pt
 
 ### Running the tool
 
+Assuming you are on an Arch Linux system, this will work; if not, it won't, as it fetches packages via `pacman`.
 ```bash
 ./mon
 ```
