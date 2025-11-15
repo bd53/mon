@@ -6,7 +6,7 @@
 
 #ifdef __cplusplus
 extern "C" {
-    #endif
+#endif
 
     typedef struct {
         uint64_t user;
@@ -91,7 +91,7 @@ extern "C" {
     int get_page_size(void);
     int get_num_cpus(void);
     uint64_t get_total_memory(void);
-    #ifdef __cplusplus
+#ifdef __cplusplus
 }
 #endif
 
