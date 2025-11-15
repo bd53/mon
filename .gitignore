@@ -1,0 +1,5 @@
+libsysinfo.a
+main.o
+mon
+Monitor.o
+sysinfo.o
