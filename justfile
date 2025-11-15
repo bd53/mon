@@ -12,12 +12,6 @@ cxx_objs := builddir + "/Monitor.o " + builddir + "/main.o " + builddir + "/Term
 
 all: clean build run
 
-build: setup compile
-    ar rcs {{builddir}}/{{lib}} {{c_objs}}
-    @echo "Static library created: {{builddir}}/{{lib}}"
-    {{cxx}} {{cxxflags}} -o {{builddir}}/{{target}} {{cxx_objs}} -L{{builddir}} -lsysinfo -pthread
-    @echo "Binary created: {{builddir}}/{{target}}"
-
 setup:
     mkdir -p {{builddir}}
 
@@ -37,6 +31,12 @@ compile: setup
     {{cxx}} {{cxxflags}} -c screens/Timezone.cpp -o {{builddir}}/Timezone.o
     {{cxx}} {{cxxflags}} -c screens/CPU.cpp -o {{builddir}}/CPU.o
     {{cxx}} {{cxxflags}} -c screens/Kernel.cpp -o {{builddir}}/Kernel.o
+
+build: setup compile
+    ar rcs {{builddir}}/{{lib}} {{c_objs}}
+    @echo "Static library created: {{builddir}}/{{lib}}"
+    {{cxx}} {{cxxflags}} -o {{builddir}}/{{target}} {{cxx_objs}} -L{{builddir}} -lsysinfo -pthread
+    @echo "Binary created: {{builddir}}/{{target}}"
 
 clean:
     rm -rf {{builddir}}
