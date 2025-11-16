@@ -26,9 +26,9 @@ Alternative ways to install are `git clone` the repository.
 
 ### Running the tool
 
-Assuming you are on an Arch Linux system, this tool relies on `pacman` and checks paths like `/etc/pacman.conf` and `/etc/pacman.d/`.
+Assuming you are on an Arch Linux system, this tool relies on `pacman` and checks paths like `/etc/pacman.d/`.
 ```bash
-./build/mon
+./build
 ```
 
 ### Running the tool using `python`

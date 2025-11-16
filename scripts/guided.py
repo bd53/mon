@@ -1,10 +1,11 @@
+from pathlib import Path
 import subprocess
 import sys
 import termios
 import tty
-from pathlib import Path
 
-binary = Path("build/mon")
+project_root = Path(__file__).parent.parent.resolve()
+binary = project_root / "build"
 
 if not binary.exists():
     print(f"Error: {binary} does not exist. Build first.")
@@ -22,4 +23,5 @@ except KeyboardInterrupt:
     pass
 finally:
     termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
-    sys.exit(130) if 'KeyboardInterrupt' in str(sys.exc_info()[0]) else None
+    if 'KeyboardInterrupt' in str(sys.exc_info()[0]):
+        sys.exit(130)
