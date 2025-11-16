@@ -2,7 +2,7 @@
 
 Very wip, basically a tech demo.
 
-[test2.webm](https://github.com/user-attachments/assets/98f004ee-a697-453a-a57b-c487bcb731b9)
+[test3.webm](https://github.com/user-attachments/assets/1e7b57f8-1e43-43c3-9c87-4cd0fc031571)
 
 [![](https://img.shields.io/badge/License-MIT-blue?logo=opensource)](./LICENSE)
 [![](https://img.shields.io/github/contributors/bd53/mon?logo=github)](https://github.com/bd53/mon/graphs/contributors)
