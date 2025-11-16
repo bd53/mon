@@ -52,10 +52,10 @@ cxx_objs=(
 
 setup() {
     mkdir -p "$output"
+    echo "Created build directory: $output"
 }
 
 compile() {
-    setup
     echo "Compiling C sources..."
     for src in "${c_sources[@]}"; do
         obj="$output/$(basename "${src%.*}").o"
@@ -79,24 +79,4 @@ build() {
     echo "Binary created: $output/$target"
 }
 
-run() {
-    "$output/$target"
-}
-
-clean() {
-    rm -rf "$output"
-    echo "Cleaned build artifacts"
-}
-
-all() {
-    clean
-    build
-    run
-}
-
-if [ $# -eq 0 ]; then
-    echo "Usage: $0 { setup | compile | build | clean | run | all }"
-    exit 1
-fi
-
-"$@"
+build

@@ -21,7 +21,7 @@ Alternative ways to install are `git clone` the repository.
 ### Build
 
 ```bash
-./autogen.sh build
+./build.sh
 ```
 
 ### Running the tool
@@ -31,12 +31,12 @@ Assuming you are on an Arch Linux system, this tool relies on `pacman` and check
 ./build/mon
 ```
 
-### Running the tool using `autogen`
+### Running the tool using `python`
 
 ```bash
-./autogen.sh run
+python run.py
 ```
 
 #### Advanced
 
-Some additional options are available using [just](https://github.com/casey/just). You can simplify the process with `just build` / `just run`.
+Some additional options are available using [make](https://www.gnu.org/software/make) and [just](https://github.com/casey/just).
