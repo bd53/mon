@@ -1,6 +1,7 @@
 #include "Mirrors.hpp"
 #include "../ui/Terminal.hpp"
 #include "../ui/Display.hpp"
+#include "../utils/Pipe.hpp"
 #include <iostream>
 #include <cstdio>
 #include <memory>
@@ -11,7 +12,7 @@ bool MirrorsScreen::render(SystemMonitor&) {
     std::cout << "Location: /etc/pacman.d/mirrorlist\n";
     std::array<char, 128> buffer;
     std::string result;
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen("grep -v '^#' /etc/pacman.d/mirrorlist | grep Server | head -10", "r"), pclose);
+    std::unique_ptr<FILE, PipeDeleter> pipe(popen("grep -v '^#' /etc/pacman.d/mirrorlist | grep Server | head -10", "r"));
     if (pipe) {
         while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
             result += buffer.data();

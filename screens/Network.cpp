@@ -1,6 +1,7 @@
 #include "Network.hpp"
 #include "../ui/Terminal.hpp"
 #include "../ui/Display.hpp"
+#include "../utils/Pipe.hpp"
 #include <iostream>
 #include <cstdio>
 #include <memory>
@@ -10,7 +11,7 @@ bool NetworkScreen::render(SystemMonitor&) {
     std::array<char, 128> buffer;
     std::string result;
     std::cout << "\033[1mNetwork Interfaces:\033[0m\n";
-    std::unique_ptr<FILE, decltype(&pclose)> pipe(popen("ip -br addr show | grep -v '^lo'", "r"), pclose);
+    std::unique_ptr<FILE, PipeDeleter> pipe(popen("ip -br addr show | grep -v '^lo'", "r"));
     if (pipe) {
         while (fgets(buffer.data(), buffer.size(), pipe.get()) != nullptr) {
             std::cout << buffer.data();
