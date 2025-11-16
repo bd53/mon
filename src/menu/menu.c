@@ -6,28 +6,21 @@
 
 void run_menu(void) {
     MenuItem items[MAX_ITEMS];
-    init_menu_items(items);
+    init_items(items);
     int highlight = 0;
     int ch;
     while (1) {
         clear();
         mvprintw(1, 4, "Press Ctrl+h for help");
         for (int i = 0; i < MAX_ITEMS; i++) {
-            if (i == highlight) {
-                attron(COLOR_PAIR(1) | A_REVERSE);
-                mvprintw(3 + i, 2, "> %s", items[i].name);
-                attroff(COLOR_PAIR(1) | A_REVERSE);
-            } else {
-                mvprintw(3 + i, 2, "  %s", items[i].name);
-            }
+            if (i == highlight) attron(COLOR_PAIR(1) | A_REVERSE);
+            mvprintw(3 + i, 2, "%s%s", (i == highlight) ? "> " : "  ", items[i].name);
+            if (i == highlight) attroff(COLOR_PAIR(1) | A_REVERSE);
         }
-        if (highlight == MAX_ITEMS) {
-            attron(COLOR_PAIR(1) | A_REVERSE);
-            mvprintw(3 + MAX_ITEMS + 1, 2, "> Abort");
-            attroff(COLOR_PAIR(1) | A_REVERSE);
-        } else {
-            mvprintw(3 + MAX_ITEMS + 1, 2, "  Abort");
-        }
+        int abort_line = 3 + MAX_ITEMS + 1;
+        if (highlight == MAX_ITEMS) attron(COLOR_PAIR(1) | A_REVERSE);
+        mvprintw(abort_line, 2, "%sAbort", (highlight == MAX_ITEMS) ? "> " : "  ");
+        if (highlight == MAX_ITEMS) attroff(COLOR_PAIR(1) | A_REVERSE);
         refresh();
         ch = getch();
         switch (ch) {
@@ -38,9 +31,8 @@ void run_menu(void) {
                 highlight = (highlight + 1) % (MAX_ITEMS + 1);
                 break;
             case 10:
-                if (highlight == MAX_ITEMS) {
-                    return;
-                } else {
+                if (highlight == MAX_ITEMS) return;
+                {
                     char *info = items[highlight].get_info();
                     WINDOW *detail_win = newwin(LINES, COLS, 0, 0);
                     show_detail(detail_win, items[highlight].name, info);

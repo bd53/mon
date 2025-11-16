@@ -1,5 +1,5 @@
-#ifndef SYSTEM_INFO_H
-#define SYSTEM_INFO_H
+#ifndef INFO_H
+#define INFO_H
 
 char* get_disk_config(void);
 char* get_swap(void);

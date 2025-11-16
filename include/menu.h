@@ -6,7 +6,7 @@ typedef struct {
     char *(*get_info)(void);
 } MenuItem;
 
-void init_menu_items(MenuItem *items);
+void init_items(MenuItem *items);
 void run_menu(void);
 
 #endif

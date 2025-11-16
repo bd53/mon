@@ -1,6 +1,6 @@
 #include <stdlib.h>
 #include <string.h>
-#include "system_info.h"
+#include "info.h"
 
 extern char* run_cmd(const char *cmd);
 

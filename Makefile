@@ -1,27 +1,31 @@
-CC = gcc
-CFLAGS = -Wall -Wextra -O2 -Iinclude
-LDFLAGS = -lncurses
-TARGET = build
-SRC_MAIN = main.c
-SRC_MENU = src/menu/menu.c src/menu/menu_items.c
-SRC_SYSTEM = src/system/system_info.c src/system/hardware.c src/system/software.c
-SRC_UI = src/ui/screen.c src/ui/display.c
-SRC_UTILS = utils/command.c utils/string_utils.c
-SRC = $(SRC_MAIN) $(SRC_MENU) $(SRC_SYSTEM) $(SRC_UI) $(SRC_UTILS)
-OBJ = $(SRC:.c=.o)
+c = gcc
+cflags = -Wall -Wextra -O2 -Iinclude
+ldflags = -lncurses
+target = build
 
-.PHONY: all run clean
+.PHONY: all build run clean
 
-all: $(TARGET)
+all: clean build
 
-$(TARGET): $(OBJ)
-	$(CC) $(CFLAGS) -o $(TARGET) $(OBJ) $(LDFLAGS)
+build:
+	@echo "Finding C source files..."
+	@for src in $$(find . -name '*.c'); do \
+		obj="$${src%.c}.o"; \
+		dir=$$(dirname "$$obj"); \
+		mkdir -p "$$dir"; \
+		echo "  ✓ $$src"; \
+		$(c) $(cflags) -c "$$src" -o "$$obj"; \
+	done
+	@echo "Linking object files..."
+	@$(c) $(cflags) -o $(target) $$(find . -name '*.o') $(ldflags)
+	@echo "Build complete: $(target)"
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
-
-run: $(TARGET)
-	./$(TARGET)
+run:
+	@echo "Running $(target)..."
+	@./$(target)
 
 clean:
-	rm -f $(TARGET) $(OBJ)
+	@echo "Cleaning build artifacts..."
+	@rm -f $(target)
+	@find . -name '*.o' -type f -delete
+	@echo "Clean complete"

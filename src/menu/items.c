@@ -1,7 +1,7 @@
 #include "menu.h"
-#include "system_info.h"
+#include "info.h"
 
-void init_menu_items(MenuItem *items) {
+void init_items(MenuItem *items) {
     items[0] = (MenuItem){"Language", get_language};
     items[1] = (MenuItem){"Locales", get_locale};
     items[2] = (MenuItem){"Mirrors and repositories", get_mirrors};

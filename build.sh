@@ -2,11 +2,12 @@
 
 set -e
 
-CC="gcc"
-CFLAGS="-Wall -Wextra -O2 -Iinclude"
-LDFLAGS="-lncurses"
-TARGET="build"
+c="gcc"
+cflags="-Wall -Wextra -O2 -Iinclude"
+ldflags="-lncurses"
+target="build"
 
+echo "Finding C source files..."
 SRC=($(find . -name '*.c'))
 
 OBJ=()
@@ -15,14 +16,15 @@ for f in "${SRC[@]}"; do
     OBJ+=("${f_clean%.c}.o")
 done
 
+echo "Compiling source files..."
 for i in "${!SRC[@]}"; do
-    SRC_FILE="${SRC[$i]}"
-    OBJ_FILE="${OBJ[$i]}"
-    mkdir -p "$(dirname "$OBJ_FILE")"
-    echo "Compiling $SRC_FILE -> $OBJ_FILE"
-    $CC $CFLAGS -c "$SRC_FILE" -o "$OBJ_FILE"
+    obj="${OBJ[$i]}"
+    src="${SRC[$i]}"
+    mkdir -p "$(dirname "$obj")"
+    echo "  ✓ $src"
+    $c $cflags -c "$src" -o "$obj"
 done
 
-$CC $CFLAGS -o "$TARGET" "${OBJ[@]}" $LDFLAGS
-
-echo "Build complete: $TARGET"
+echo "Linking object files..."
+$c $cflags -o "$target" "${OBJ[@]}" $ldflags
+echo "Build complete: $target"
