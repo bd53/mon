@@ -11,7 +11,7 @@ char* get_swap(void) {
 }
 
 char* get_audio(void) {
-    return run_cmd("pactl info 2>/dev/null || echo 'PulseAudio not detected'; aplay -l 2>/dev/null | head -10");
+    return run_cmd("pactl info 2>/dev/null; aplay -l 2>/dev/null | head -10");
 }
 
 char* get_network(void) {

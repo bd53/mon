@@ -9,7 +9,7 @@ char* get_hostname(void) {
 }
 
 char* get_root_password(void) {
-    return strdup("Root password is set (cannot display for security)");
+    return strdup("Root password is set (cannot display for security).");
 }
 
 char* get_user_account(void) {
@@ -17,5 +17,5 @@ char* get_user_account(void) {
 }
 
 char* get_profile(void) {
-    return run_cmd("ls -la ~/.config 2>/dev/null | head -10 || echo 'No profile data'");
+    return run_cmd("ls -la ~/.config 2>/dev/null | head -10");
 }

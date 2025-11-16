@@ -1,6 +1,8 @@
 #include <string.h>
 #include <stdlib.h>
+#include <stdio.h>
 #include "info.h"
+#include "../../include/pacman.h"
 
 extern char* run_cmd(const char *cmd);
 
@@ -17,9 +19,7 @@ char* get_mirrors(void) {
 }
 
 char* get_bootloader(void) {
-    char *result = run_cmd("bootctl status 2>/dev/null || grub-install --version 2>/dev/null || echo 'Unknown bootloader'");
-    if (strlen(result) == 0) return strdup("No bootloader detected");
-    return result;
+    return run_cmd("bootctl status 2>/dev/null || grub-install --version 2>/dev/null");
 }
 
 char* get_kernel(void) {
@@ -27,11 +27,11 @@ char* get_kernel(void) {
 }
 
 char* get_kernels(void) {
-    return run_cmd("pacman -Q | grep linux | grep -v linux-api");
+    return Pacman.run("-Q | grep linux | grep -v linux-api");
 }
 
 char* get_packages(void) {
-    return run_cmd("echo \"total $(pacman -Q | wc -l)\"; echo ''; pacman -Q | head -20");
+    return Pacman.run("-Qen | awk 'BEGIN {ORS=\"\"} {packages[NR]=$0} END {print \"total \" NR \"\\n\\n\"; for(i=1; i<=NR; i++) print packages[i] \"\\n\"}'");
 }
 
 char* get_timezone(void) {

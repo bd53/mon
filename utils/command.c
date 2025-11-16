@@ -6,7 +6,7 @@
 char* run_cmd(const char *cmd) {
     static char buffer[MAX_OUTPUT];
     FILE *fp = popen(cmd, "r");
-    if (!fp) return strdup("Error reading data");
+    if (!fp) return strdup("Error reading data.");
     buffer[0] = '\0';
     char line[MAX_LINE];
     while (fgets(line, sizeof(line), fp)) {
