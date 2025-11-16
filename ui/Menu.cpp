@@ -8,21 +8,27 @@
 #include "../screens/Kernel.hpp"
 #include "../screens/Package.hpp"
 #include "../screens/Timezone.hpp"
+#include "../screens/Mirrors.hpp"
+#include "../screens/Hostname.hpp"
+#include "../screens/Network.hpp"
 #include <iostream>
 #include <cstring>
 
 static const MenuItem MENU_ITEMS[] = {
+    {"Mirrors and repositories", MirrorsScreen::render},
     {"System overview", SystemScreen::render},
     {"CPU", CpuScreen::render},
     {"Memory", MemoryScreen::render},
     {"Top processes (by memory)", ProcessScreen::render},
+    {"Hostname", HostnameScreen::render},
     {"Profile", ProfileScreen::render},
     {"Kernels", KernelScreen::render},
+    {"Network configuration", NetworkScreen::render},
     {"Additional packages", PackageScreen::render},
     {"Timezone", TimezoneScreen::render}
 };
 
-static const int MENU_COUNT = 8;
+static const int MENU_COUNT = 11;
 
 void Menu::draw(int selected) {
     Terminal::clear();

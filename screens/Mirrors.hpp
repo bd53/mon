@@ -1,9 +1,9 @@
-#ifndef CPU_HPP
-#define CPU_HPP
+#ifndef MIRRORS_HPP
+#define MIRRORS_HPP
 
 #include "../Monitor.hpp"
 
-class CpuScreen {
+class MirrorsScreen {
     public:
         static bool render(SystemMonitor& monitor);
 };

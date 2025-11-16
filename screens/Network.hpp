@@ -1,9 +1,9 @@
-#ifndef CPU_HPP
-#define CPU_HPP
+#ifndef NETWORK_HPP
+#define NETWORK_HPP
 
 #include "../Monitor.hpp"
 
-class CpuScreen {
+class NetworkScreen {
     public:
         static bool render(SystemMonitor& monitor);
 };

@@ -1,46 +1,49 @@
-cc := "gcc"
+c := "gcc"
 cxx := "g++"
 cflags := "-Wall -Wextra -O2 -fPIC"
 cxxflags := "-Wall -Wextra -O2 -std=c++17 -fPIC"
 target := "mon"
 lib := "libsysinfo.a"
 c_sources := "sysinfo.c"
-cxx_sources := "Monitor.cpp main.cpp ui/Terminal.cpp ui/Menu.cpp ui/Display.cpp screens/Memory.cpp screens/Package.cpp screens/Process.cpp screens/Profile.cpp screens/Runner.cpp screens/System.cpp screens/Timezone.cpp screens/CPU.cpp screens/Kernel.cpp"
-builddir := "build"
-c_objs := builddir + "/sysinfo.o"
-cxx_objs := builddir + "/Monitor.o " + builddir + "/main.o " + builddir + "/Terminal.o " + builddir + "/Menu.o " + builddir + "/Display.o " + builddir + "/Memory.o " + builddir + "/Package.o " + builddir + "/Process.o " + builddir + "/Runner.o " + builddir + "/System.o " + builddir + "/Profile.o " + builddir + "/Timezone.o " + builddir + "/CPU.o " + builddir + "/Kernel.o"
+cxx_sources := "Monitor.cpp main.cpp ui/Terminal.cpp ui/Menu.cpp ui/Display.cpp screens/Memory.cpp screens/Package.cpp screens/Process.cpp screens/Profile.cpp screens/Runner.cpp screens/System.cpp screens/Timezone.cpp screens/CPU.cpp screens/Kernel.cpp screens/Mirrors.cpp screens/Hostname.cpp screens/Network.cpp"
+output := "build"
+c_objs := output + "/sysinfo.o"
+cxx_objs := output + "/Monitor.o " + output + "/main.o " + output + "/Terminal.o " + output + "/Menu.o " + output + "/Display.o " + output + "/Memory.o " + output + "/Package.o " + output + "/Process.o " + output + "/Runner.o " + output + "/System.o " + output + "/Profile.o " + output + "/Timezone.o " + output + "/CPU.o " + output + "/Kernel.o " + output + "/Mirrors.o " + output + "/Hostname.o " + output + "/Network.o"
 
 all: clean build run
 
 setup:
-    mkdir -p {{builddir}}
+    mkdir -p {{output}}
 
 compile: setup
-    {{cc}} {{cflags}} -c {{c_sources}} -o {{builddir}}/sysinfo.o
-    {{cxx}} {{cxxflags}} -c Monitor.cpp -o {{builddir}}/Monitor.o
-    {{cxx}} {{cxxflags}} -c main.cpp -o {{builddir}}/main.o
-    {{cxx}} {{cxxflags}} -c ui/Terminal.cpp -o {{builddir}}/Terminal.o
-    {{cxx}} {{cxxflags}} -c ui/Menu.cpp -o {{builddir}}/Menu.o
-    {{cxx}} {{cxxflags}} -c ui/Display.cpp -o {{builddir}}/Display.o
-    {{cxx}} {{cxxflags}} -c screens/Memory.cpp -o {{builddir}}/Memory.o
-    {{cxx}} {{cxxflags}} -c screens/Package.cpp -o {{builddir}}/Package.o
-    {{cxx}} {{cxxflags}} -c screens/Process.cpp -o {{builddir}}/Process.o
-    {{cxx}} {{cxxflags}} -c screens/Profile.cpp -o {{builddir}}/Profile.o
-    {{cxx}} {{cxxflags}} -c screens/Runner.cpp -o {{builddir}}/Runner.o
-    {{cxx}} {{cxxflags}} -c screens/System.cpp -o {{builddir}}/System.o
-    {{cxx}} {{cxxflags}} -c screens/Timezone.cpp -o {{builddir}}/Timezone.o
-    {{cxx}} {{cxxflags}} -c screens/CPU.cpp -o {{builddir}}/CPU.o
-    {{cxx}} {{cxxflags}} -c screens/Kernel.cpp -o {{builddir}}/Kernel.o
+    {{c}} {{cflags}} -c {{c_sources}} -o {{output}}/sysinfo.o
+    {{cxx}} {{cxxflags}} -c Monitor.cpp -o {{output}}/Monitor.o
+    {{cxx}} {{cxxflags}} -c main.cpp -o {{output}}/main.o
+    {{cxx}} {{cxxflags}} -c ui/Terminal.cpp -o {{output}}/Terminal.o
+    {{cxx}} {{cxxflags}} -c ui/Menu.cpp -o {{output}}/Menu.o
+    {{cxx}} {{cxxflags}} -c ui/Display.cpp -o {{output}}/Display.o
+    {{cxx}} {{cxxflags}} -c screens/Memory.cpp -o {{output}}/Memory.o
+    {{cxx}} {{cxxflags}} -c screens/Package.cpp -o {{output}}/Package.o
+    {{cxx}} {{cxxflags}} -c screens/Process.cpp -o {{output}}/Process.o
+    {{cxx}} {{cxxflags}} -c screens/Profile.cpp -o {{output}}/Profile.o
+    {{cxx}} {{cxxflags}} -c screens/Runner.cpp -o {{output}}/Runner.o
+    {{cxx}} {{cxxflags}} -c screens/System.cpp -o {{output}}/System.o
+    {{cxx}} {{cxxflags}} -c screens/Timezone.cpp -o {{output}}/Timezone.o
+    {{cxx}} {{cxxflags}} -c screens/CPU.cpp -o {{output}}/CPU.o
+    {{cxx}} {{cxxflags}} -c screens/Kernel.cpp -o {{output}}/Kernel.o
+    {{cxx}} {{cxxflags}} -c screens/Mirrors.cpp -o {{output}}/Mirrors.o
+    {{cxx}} {{cxxflags}} -c screens/Hostname.cpp -o {{output}}/Hostname.o
+    {{cxx}} {{cxxflags}} -c screens/Network.cpp -o {{output}}/Network.o
 
 build: setup compile
-    ar rcs {{builddir}}/{{lib}} {{c_objs}}
-    @echo "Static library created: {{builddir}}/{{lib}}"
-    {{cxx}} {{cxxflags}} -o {{builddir}}/{{target}} {{cxx_objs}} -L{{builddir}} -lsysinfo -pthread
-    @echo "Binary created: {{builddir}}/{{target}}"
-
-clean:
-    rm -rf {{builddir}}
-    @echo "Cleaned build artifacts"
+    ar rcs {{output}}/{{lib}} {{c_objs}}
+    @echo "Static library created: {{output}}/{{lib}}"
+    {{cxx}} {{cxxflags}} -o {{output}}/{{target}} {{cxx_objs}} -L{{output}} -lsysinfo -pthread
+    @echo "Binary created: {{output}}/{{target}}"
 
 run:
-    {{builddir}}/{{target}}
+    {{output}}/{{target}}
+
+clean:
+    rm -rf {{output}}
+    @echo "Cleaned build artifacts"

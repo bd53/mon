@@ -1,9 +1,9 @@
-#ifndef CPU_HPP
-#define CPU_HPP
+#ifndef HOSTNAME_HPP
+#define HOSTNAME_HPP
 
 #include "../Monitor.hpp"
 
-class CpuScreen {
+class HostnameScreen {
     public:
         static bool render(SystemMonitor& monitor);
 };

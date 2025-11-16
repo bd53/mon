@@ -41,7 +41,6 @@ class HistoryBuffer {
         double get_avg_cpu(size_t samples = 10) const;
         double get_max_cpu(size_t samples = 10) const;
         double get_avg_mem(size_t samples = 10) const;
-
     private:
         std::deque<SystemSnapshot> buffer_;
         size_t max_size_;
@@ -57,7 +56,6 @@ class ProcessMonitor {
         ProcessSnapshot get_process(int pid) const;
         bool process_exists(int pid) const;
         size_t process_count() const;
-
     private:
         std::map<int, ProcessSnapshot> processes_;
         cpu_stats_t prev_total_cpu_;
