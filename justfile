@@ -10,7 +10,9 @@ output := "build"
 c_objs := output + "/sysinfo.o"
 cxx_objs := output + "/Monitor.o " + output + "/main.o " + output + "/Terminal.o " + output + "/Menu.o " + output + "/Display.o " + output + "/Memory.o " + output + "/Package.o " + output + "/Process.o " + output + "/Runner.o " + output + "/System.o " + output + "/Profile.o " + output + "/Timezone.o " + output + "/CPU.o " + output + "/Kernel.o " + output + "/Mirrors.o " + output + "/Hostname.o " + output + "/Network.o"
 
-all: clean build run
+default: clean build
+
+all: clean build
 
 setup:
     mkdir -p {{output}}

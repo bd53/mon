@@ -12,40 +12,40 @@ CXX_OBJS := $(OUTPUT)/Monitor.o $(OUTPUT)/main.o $(OUTPUT)/Terminal.o $(OUTPUT)/
 
 .PHONY: all setup compile build run clean
 
-all: clean build run
+all: clean build
 
 setup:
-    mkdir -p $(OUTPUT)
+	mkdir -p $(OUTPUT)
 
 compile: setup
-    $(C) $(CFLAGS) -c $(C_SOURCES) -o $(OUTPUT)/sysinfo.o
-    $(CXX) $(CXXFLAGS) -c Monitor.cpp -o $(OUTPUT)/Monitor.o
-    $(CXX) $(CXXFLAGS) -c main.cpp -o $(OUTPUT)/main.o
-    $(CXX) $(CXXFLAGS) -c ui/Terminal.cpp -o $(OUTPUT)/Terminal.o
-    $(CXX) $(CXXFLAGS) -c ui/Menu.cpp -o $(OUTPUT)/Menu.o
-    $(CXX) $(CXXFLAGS) -c ui/Display.cpp -o $(OUTPUT)/Display.o
-    $(CXX) $(CXXFLAGS) -c screens/Memory.cpp -o $(OUTPUT)/Memory.o
-    $(CXX) $(CXXFLAGS) -c screens/Package.cpp -o $(OUTPUT)/Package.o
-    $(CXX) $(CXXFLAGS) -c screens/Process.cpp -o $(OUTPUT)/Process.o
-    $(CXX) $(CXXFLAGS) -c screens/Profile.cpp -o $(OUTPUT)/Profile.o
-    $(CXX) $(CXXFLAGS) -c screens/Runner.cpp -o $(OUTPUT)/Runner.o
-    $(CXX) $(CXXFLAGS) -c screens/System.cpp -o $(OUTPUT)/System.o
-    $(CXX) $(CXXFLAGS) -c screens/Timezone.cpp -o $(OUTPUT)/Timezone.o
-    $(CXX) $(CXXFLAGS) -c screens/CPU.cpp -o $(OUTPUT)/CPU.o
-    $(CXX) $(CXXFLAGS) -c screens/Kernel.cpp -o $(OUTPUT)/Kernel.o
-    $(CXX) $(CXXFLAGS) -c screens/Mirrors.cpp -o $(OUTPUT)/Mirrors.o
-    $(CXX) $(CXXFLAGS) -c screens/Hostname.cpp -o $(OUTPUT)/Hostname.o
-    $(CXX) $(CXXFLAGS) -c screens/Network.cpp -o $(OUTPUT)/Network.o
+	$(C) $(CFLAGS) -c $(C_SOURCES) -o $(OUTPUT)/sysinfo.o
+	$(CXX) $(CXXFLAGS) -c Monitor.cpp -o $(OUTPUT)/Monitor.o
+	$(CXX) $(CXXFLAGS) -c main.cpp -o $(OUTPUT)/main.o
+	$(CXX) $(CXXFLAGS) -c ui/Terminal.cpp -o $(OUTPUT)/Terminal.o
+	$(CXX) $(CXXFLAGS) -c ui/Menu.cpp -o $(OUTPUT)/Menu.o
+	$(CXX) $(CXXFLAGS) -c ui/Display.cpp -o $(OUTPUT)/Display.o
+	$(CXX) $(CXXFLAGS) -c screens/Memory.cpp -o $(OUTPUT)/Memory.o
+	$(CXX) $(CXXFLAGS) -c screens/Package.cpp -o $(OUTPUT)/Package.o
+	$(CXX) $(CXXFLAGS) -c screens/Process.cpp -o $(OUTPUT)/Process.o
+	$(CXX) $(CXXFLAGS) -c screens/Profile.cpp -o $(OUTPUT)/Profile.o
+	$(CXX) $(CXXFLAGS) -c screens/Runner.cpp -o $(OUTPUT)/Runner.o
+	$(CXX) $(CXXFLAGS) -c screens/System.cpp -o $(OUTPUT)/System.o
+	$(CXX) $(CXXFLAGS) -c screens/Timezone.cpp -o $(OUTPUT)/Timezone.o
+	$(CXX) $(CXXFLAGS) -c screens/CPU.cpp -o $(OUTPUT)/CPU.o
+	$(CXX) $(CXXFLAGS) -c screens/Kernel.cpp -o $(OUTPUT)/Kernel.o
+	$(CXX) $(CXXFLAGS) -c screens/Mirrors.cpp -o $(OUTPUT)/Mirrors.o
+	$(CXX) $(CXXFLAGS) -c screens/Hostname.cpp -o $(OUTPUT)/Hostname.o
+	$(CXX) $(CXXFLAGS) -c screens/Network.cpp -o $(OUTPUT)/Network.o
 
 build: setup compile
-    ar rcs $(OUTPUT)/$(LIB) $(C_OBJS)
-    @echo "Static library created: $(OUTPUT)/$(LIB)"
-    $(CXX) $(CXXFLAGS) -o $(OUTPUT)/$(TARGET) $(CXX_OBJS) -L$(OUTPUT) -lsysinfo -pthread
-    @echo "Binary created: $(OUTPUT)/$(TARGET)"
+	ar rcs $(OUTPUT)/$(LIB) $(C_OBJS)
+	@echo "Static library created: $(OUTPUT)/$(LIB)"
+	$(CXX) $(CXXFLAGS) -o $(OUTPUT)/$(TARGET) $(CXX_OBJS) -L$(OUTPUT) -lsysinfo -pthread
+	@echo "Binary created: $(OUTPUT)/$(TARGET)"
 
 run:
-    $(OUTPUT)/$(TARGET)
+	$(OUTPUT)/$(TARGET)
 
 clean:
-    rm -rf $(OUTPUT)
-    @echo "Cleaned build artifacts"
+	rm -rf $(OUTPUT)
+	@echo "Cleaned build artifacts"
