@@ -6,7 +6,9 @@ typedef struct {
     char *(*get_info)(void);
 } MenuItem;
 
-void init_items(MenuItem *items);
+extern MenuItem MENU_ITEMS[];
+extern const int MENU_ITEM_COUNT;
+
 void run_menu(void);
 
 #endif
