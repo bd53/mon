@@ -5,7 +5,7 @@ target = build
 
 .PHONY: all build run clean
 
-all: clean build
+all: clean build run
 
 build:
 	@echo "Finding C source files..."

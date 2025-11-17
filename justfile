@@ -3,9 +3,9 @@ cflags := "-Wall -Wextra -O2 -Iinclude"
 ldflags := "-lncurses -lcurl"
 target := "build"
 
-default: clean build
+default: clean build run
 
-all: clean build
+all: clean build run
 
 build:
     #!/bin/env bash
