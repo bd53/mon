@@ -27,7 +27,7 @@ size_t write_callback(void *contents, size_t size, size_t nmemb, void *userp) {
     return realsize;
 }
 
-char* extract_tag(const char *xml, const char *tag, const char *start_pos) {
+char* extract_tag(const char *tag, const char *start_pos) {
     char open_tag[64], close_tag[64];
     snprintf(open_tag, sizeof(open_tag), "<%s>", tag);
     snprintf(close_tag, sizeof(close_tag), "</%s>", tag);
@@ -228,10 +228,10 @@ char* get_news(void) {
     int item_count = 0;
     while ((pos = strstr(pos, "<item>")) != NULL && item_count < MAX_ENTRIES) {
         pos += 6;
-        char *title = extract_tag(response.data, "title", pos);
-        char *link = extract_tag(response.data, "link", pos);
-        char *pubdate = extract_tag(response.data, "pubDate", pos);
-        char *description = extract_tag(response.data, "description", pos);
+        char *title = extract_tag("title", pos);
+        char *link = extract_tag("link", pos);
+        char *pubdate = extract_tag("pubDate", pos);
+        char *description = extract_tag("description", pos);
         if (title && link && pubdate) {
             decode_html(title);
             normalize_whitespace(title);

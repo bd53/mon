@@ -17,5 +17,5 @@ char* get_user_account(void) {
 }
 
 char* get_profile(void) {
-    return run_cmd("ls -la ~/.config 2>/dev/null | head -10");
+    return run_cmd("echo \"$XDG_CURRENT_DESKTOP, $DESKTOP_SESSION, $XDG_SESSION_TYPE\"");
 }
