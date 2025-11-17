@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include "info.h"
-#include "../../include/pacman.h"
+#include "../include/pacman.h"
 
 extern char* run_cmd(const char *cmd);
 
