@@ -1,6 +1,6 @@
 c = gcc
 cflags = -Wall -Wextra -O2 -Iinclude
-ldflags = -lncurses
+ldflags = -lncurses -lcurl
 target = build
 
 .PHONY: all build run clean

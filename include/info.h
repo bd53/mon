@@ -19,5 +19,6 @@ char* get_kernels(void);
 char* get_packages(void);
 char* get_timezone(void);
 char* get_ntp(void);
+char* get_news(void);
 
 #endif

@@ -4,7 +4,7 @@ set -e
 
 c="gcc"
 cflags="-Wall -Wextra -O2 -Iinclude"
-ldflags="-lncurses"
+ldflags="-lncurses -lcurl"
 target="build"
 
 echo "Finding C source files..."
