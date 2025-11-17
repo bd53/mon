@@ -3,11 +3,11 @@
 extern char* run_cmd(const char *cmd);
 
 char* get_disk_config(void) {
-    return run_cmd("lsblk -o NAME,SIZE,TYPE,MOUNTPOINT,FSTYPE");
+    return run_cmd("lsblk -o NAME,TYPE,SIZE,FSTYPE,MOUNTPOINT,LABEL,UUID,PARTLABEL,PARTUUID");
 }
 
 char* get_swap(void) {
-    return run_cmd("swapon --show");
+    return run_cmd("swapon --show --bytes --output NAME,TYPE,SIZE,USED,PRIO");
 }
 
 char* get_audio(void) {
@@ -15,5 +15,5 @@ char* get_audio(void) {
 }
 
 char* get_network(void) {
-    return run_cmd("ip addr show | grep -E 'inet |^[0-9]'");
+    return run_cmd("nmcli dev wifi list 2>/dev/null | head -10 && echo '\n================================================' && ip -o addr show");
 }

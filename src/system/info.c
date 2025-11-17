@@ -5,7 +5,7 @@
 extern char* run_cmd(const char *cmd);
 
 char* get_hostname(void) {
-    return run_cmd("hostnamectl");
+    return run_cmd("hostnamectl | awk -F': +' '{print $2}'");
 }
 
 char* get_root_password(void) {
@@ -13,7 +13,7 @@ char* get_root_password(void) {
 }
 
 char* get_user_account(void) {
-    return run_cmd("cat /etc/passwd | grep -E '/home|/usr' | grep -v nologin");
+    return run_cmd("getent passwd | awk -F: '$6 ~ /^\\/home/ {print $1, $3, $6}'");
 }
 
 char* get_profile(void) {

@@ -23,6 +23,6 @@ void show_detail(WINDOW *win, const char *title, const char *info) {
 
 void show_help(void) {
     WINDOW *help_win = newwin(LINES, COLS, 0, 0);
-    show_detail(help_win, "Help", "Arrow Keys: Navigate menu\n" "ENTER: View configuration details\n" "Q: Quit\n\n" "Data is gathered from system commands and configuration files.");
+    show_detail(help_win, "Help", "Arrow Keys: Navigate menu\n" "ENTER: View details\n" "Q: Quit\n" "Data is fetched via system commands and configuration files.");
     delwin(help_win);
 }

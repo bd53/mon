@@ -41,3 +41,7 @@ char* get_timezone(void) {
 char* get_ntp(void) {
     return run_cmd("timedatectl | grep 'NTP' | awk '{print $3, $4}'");
 }
+
+char* get_system_errors(void) {
+    return run_cmd("journalctl -p err -b --no-pager | tail -30");
+}
