@@ -19,6 +19,8 @@ char* get_packages(void);
 char* get_timezone(void);
 char* get_ntp(void);
 char* get_news(void);
+char* get_process_summary(void);
+char* get_memory_usage(void);
 char* get_system_errors(void);
 
 #endif

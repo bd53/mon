@@ -20,6 +20,8 @@ MenuItem MENU_ITEMS[] = {
     {"Timezone                      +", get_timezone},
     {"Automatic time sync (NTP)     +", get_ntp},
     {"Recent news                   +", get_news},
+    {"Process summary               +", get_process_summary},
+    {"Memory usage                  +", get_memory_usage},
     {"System errors                 +", get_system_errors}
 };
 

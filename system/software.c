@@ -30,6 +30,10 @@ char* get_kernels(void) {
     return Pacman.run("-Q | grep linux | grep -v linux-api");
 }
 
+char* get_profile(void) {
+    return run_cmd("echo \"$XDG_CURRENT_DESKTOP, $DESKTOP_SESSION, $XDG_SESSION_TYPE\"");
+}
+
 char* get_packages(void) {
     return Pacman.run("-Qen | awk 'BEGIN {ORS=\"\"} {packages[NR]=$0} END {print \"total \" NR \"\\n\\n\"; for(i=1; i<=NR; i++) print packages[i] \"\\n\"}'");
 }
@@ -40,6 +44,10 @@ char* get_timezone(void) {
 
 char* get_ntp(void) {
     return run_cmd("timedatectl | grep 'NTP' | awk '{print $3, $4}'");
+}
+
+char* get_process_summary(void) {
+    return run_cmd("ps aux --sort=-%cpu | head -20");
 }
 
 char* get_system_errors(void) {

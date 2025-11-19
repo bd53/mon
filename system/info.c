@@ -15,7 +15,3 @@ char* get_root_password(void) {
 char* get_user_account(void) {
     return run_cmd("getent passwd | awk -F: '$6 ~ /^\\/home/ {print $1, $3, $6}'");
 }
-
-char* get_profile(void) {
-    return run_cmd("echo \"$XDG_CURRENT_DESKTOP, $DESKTOP_SESSION, $XDG_SESSION_TYPE\"");
-}

@@ -17,3 +17,7 @@ char* get_audio(void) {
 char* get_network(void) {
     return run_cmd("nmcli dev wifi list 2>/dev/null | head -10 && echo '\n================================================' && ip -o addr show");
 }
+
+char* get_memory_usage(void) {
+    return run_cmd("free -h");
+}
